@@ -1,0 +1,17 @@
+{
+    "name": "vladi/otus",
+    "description": "docker enviroment package",
+    "type": "project",
+    "authors": [
+        {
+            "name": "NightWizard75",
+            "email": "vladimir@valyakin.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "vladi\\otus\\": "code/"
+        }
+    }
+}
