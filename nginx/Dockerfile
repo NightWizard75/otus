@@ -15,7 +15,8 @@ LABEL maintainer = "Vladimir Valyakin"
 RUN apt update
 
 # запуск установки nginx
-RUN apt install -y nginx
+RUN apt install -y nginx \
+    mc
 
 # переменные окружения
 # если их несколько, значит можно прописать несколько ENV = SOMETHING

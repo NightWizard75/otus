@@ -14,6 +14,38 @@ $memcache->set('key', 'test');
 $get_value = $memcache->get('key');
 echo "Данные из Memcache: $get_value\n";
 
+$servername = "db";
+$username = "root";
+$password = "password";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully\n";
+
+echo "Попытка подключиться к MYSQL через PDO\n";
+
+$host = 'db';
+$dbname = 'laravel';
+$username = 'root';
+$password = 'password';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    echo "Connected to database $dbname at $host BY PDO successfully.\n";
+} catch (PDOException $pe) {
+    die("Could not connect to the database $dbname :" . $pe->getMessage());
+}
+
+echo "Подключаемся к POSTGRES\n";
+$conn_string = "host=postgres port=5432 dbname=mytestdb user=root password=password";
+//$dbconn4 = pg_connect($conn_string);
+//$dbconn = pg_connect("host=172.20.0.2 port=5432 dbname=mytestdb user=root password=password");
+
+echo "Postgres = $dbconn4\n";
 //ini_set('error_reporting', E_ALL);
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);

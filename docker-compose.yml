@@ -1,6 +1,14 @@
 # версия синтаксиса
-version: '3'
+version: '3.9'
 
+# назначаем папки, которые при пробросе будут брать данные из контейнера
+volumes:
+  mysql-data:
+    driver: local
+  mysql-log:
+    driver: local
+  mysql-conf:
+    driver: local
 # в этом блоке мы описываем контейнеры, которые будут запускаться
 services:
   # Контейнер с PHP (application - просто имя)
@@ -22,7 +30,8 @@ services:
       # пробрасываем файл конфигурации php.ini
       # отказался от идеи, т.к. происходит замещение файлов в /conf.d в которую при сборке добавляются модули от установок прописанных в Dockerfile при сборке образа.
       # - ./fpm/conf/php:/usr/local/etc/php
-
+      # но проброс в другую папку, чтобы потом при необходимости из нее запустить батник, который скопирует из проброшенной папки php.ini и перезапустит php-fpm
+      - ./fpm/conf/php:/usr/local/etc/php_from_host
     # мы можем создать для контейнеров внутреннюю сеть
     networks:
       - app-network
@@ -45,8 +54,8 @@ services:
 
   # контейнер с MySQL
   # строим на базе стандартного образа
-  mariadb:
-    image: mariadb:10.5.8
+  mysql:
+    image: mysql:5.7.22
     container_name: db
     ports:
       - "3306:3306"
@@ -55,8 +64,9 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
+      # - ./dbdata:/var/lib/mysql
       - ./storage/docker/mysql:/var/lib/mysql
-      - ./log/docker/mysql:/var/log/mysql
+      # - ./log/docker/mysql:/var/log/mysql
     networks:
       - app-network
 
