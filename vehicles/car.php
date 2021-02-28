@@ -1,3 +1,4 @@
+namespace Vehicles;
 class car {
     public function whereAmI()
     {

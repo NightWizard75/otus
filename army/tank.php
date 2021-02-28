@@ -1,3 +1,4 @@
+namespace Army;
 class tank {
     public function whereAmI()
     {

@@ -1,3 +1,4 @@
+namespace Vehicles;
 class plane {
     public function whereAmI()
     {

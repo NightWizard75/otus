@@ -1,3 +1,4 @@
+namespace Army;
 class solder {
     public function whereAmI()
     {
