@@ -11,7 +11,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "vladi\\otus\\": "code/"
+            "Vehicles\\": "vehicles",
+            "Army\\": "army"
         }
     }
 }
