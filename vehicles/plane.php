@@ -1,7 +1,12 @@
+<?php
 namespace Vehicles;
-class plane {
+use Base\base;
+
+class plane extends base
+{
     public function whereAmI()
     {
-        echo "You are in the block 'plane'";
+        echo "I can fly and ";
+        parent::whereAmI();
     }
 }
